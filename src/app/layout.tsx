@@ -18,7 +18,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className="p-6">
 				<main>
-					<h1 className="mb-3 text-5xl font-semibold">Info Site</h1>
+					<h1 className="mb-6 text-5xl font-semibold">Info Site</h1>
 					{children}
 				</main>
 			</body>
