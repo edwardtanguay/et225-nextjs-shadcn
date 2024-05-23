@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
 	Card,
 	CardContent,
@@ -20,15 +21,41 @@ export default async function Home() {
 		<section className="flex gap-3 flex-wrap">
 			{skills.map((skill) => {
 				return (
-					<Card key={skill.id} className="w-[20rem] bg-slate-200 border border-slate-300">
+					<Card
+						key={skill.id}
+						className="w-[20rem] bg-slate-200 border border-slate-300"
+					>
 						<CardHeader>
+							<div className="flex gap-3">
+							<Avatar>
+									<AvatarImage
+										src={`/images/${skill.idCode}.png`}
+										alt="skill"
+									/>
+									<AvatarFallback className="bg-slate-300">
+										{skill.name.slice(0, 2).toUpperCase()}
+									</AvatarFallback>
+							</Avatar>
 							<div>
-								<CardTitle className="mb-1">{skill.name}</CardTitle>
-								<CardDescription><a href={skill.url} target="_blank" className="hover:underline">Get more information on {skill.name}</a></CardDescription>
+								<CardTitle className="mb-1">
+									{skill.name}
+								</CardTitle>
+								<CardDescription>
+									<a
+										href={skill.url}
+										target="_blank"
+										className="hover:underline"
+									>
+										Get more information on {skill.name}
+									</a>
+								</CardDescription>
+							</div>
 							</div>
 						</CardHeader>
 						<CardContent>
-							<p className="italic text-[1.1rem] text-blue-800">{skill.description}</p>
+							<p className="italic text-[1.1rem] text-blue-800">
+								{skill.description}
+							</p>
 						</CardContent>
 					</Card>
 				);
