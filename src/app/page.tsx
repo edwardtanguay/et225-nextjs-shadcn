@@ -13,7 +13,7 @@ import { Skill, SkillSchema } from "@/types";
 
 async function getSkills(): Promise<Skill[]> {
 	const response = await fetch("http://localhost:4557/skills");
-	await new Promise(resolve => setTimeout(resolve, 3000));
+	await new Promise(resolve => setTimeout(resolve, 1000));
 	return response.json();
 }
 	
@@ -28,8 +28,7 @@ export default async function Home() {
 						key={skill.id}
 						className="w-[20rem] bg-slate-200 border border-slate-300 flex flex-col justify-between"
 					>
-						<CardHeader>
-							<div className="flex gap-3">
+						<CardHeader className="flex gap-3">
 								<Avatar>
 									<AvatarImage
 										src={`/images/${skill.idCode}.png`}
@@ -53,7 +52,6 @@ export default async function Home() {
 										</a>
 									</CardDescription>
 								</div>
-							</div>
 						</CardHeader>
 						<CardContent>
 							<p className="italic text-[1.1rem] text-blue-800">
