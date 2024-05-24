@@ -13,6 +13,7 @@ import { Skill, SkillSchema } from "@/types";
 
 async function getSkills(): Promise<Skill[]> {
 	const response = await fetch("http://localhost:4557/skills");
+	await new Promise(resolve => setTimeout(resolve, 3000));
 	return response.json();
 }
 	
