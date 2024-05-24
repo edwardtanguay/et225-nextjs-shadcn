@@ -1,4 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
@@ -13,7 +15,7 @@ async function getSkills(): Promise<Skill[]> {
 	const response = await fetch("http://localhost:4557/skills");
 	return response.json();
 }
-
+	
 export default async function Home() {
 	const skills = await getSkills();
 
@@ -23,11 +25,11 @@ export default async function Home() {
 				return (
 					<Card
 						key={skill.id}
-						className="w-[20rem] bg-slate-200 border border-slate-300"
+						className="w-[20rem] bg-slate-200 border border-slate-300 flex flex-col justify-between"
 					>
 						<CardHeader>
 							<div className="flex gap-3">
-							<Avatar>
+								<Avatar>
 									<AvatarImage
 										src={`/images/${skill.idCode}.png`}
 										alt="skill"
@@ -35,21 +37,21 @@ export default async function Home() {
 									<AvatarFallback className="bg-slate-300">
 										{skill.name.slice(0, 2).toUpperCase()}
 									</AvatarFallback>
-							</Avatar>
-							<div>
-								<CardTitle className="mb-1">
-									{skill.name}
-								</CardTitle>
-								<CardDescription>
-									<a
-										href={skill.url}
-										target="_blank"
-										className="hover:underline"
-									>
-										Get more information on {skill.name}
-									</a>
-								</CardDescription>
-							</div>
+								</Avatar>
+								<div>
+									<CardTitle className="mb-1">
+										{skill.name}
+									</CardTitle>
+									<CardDescription>
+										<a
+											href={skill.url}
+											target="_blank"
+											className="hover:underline"
+										>
+											Get more information on {skill.name}
+										</a>
+									</CardDescription>
+								</div>
 							</div>
 						</CardHeader>
 						<CardContent>
@@ -57,6 +59,12 @@ export default async function Home() {
 								{skill.description}
 							</p>
 						</CardContent>
+						<CardFooter className="flex justify-between">
+							<Button variant="secondary">
+								Mark as interested
+							</Button>
+							<Badge>{Math.floor(Math.random() * 50)} Jobs</Badge>
+						</CardFooter>
 					</Card>
 				);
 			})}
